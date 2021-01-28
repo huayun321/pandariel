@@ -2,6 +2,8 @@
 headless: true
 ---
 - [**算法**]({{< relref "/docs/algorithm" >}})
+  - [leetcode]({{< relref "/docs/algorithm/leetcode" >}})
+    - [两数之和]({{< relref "/docs/algorithm/leetcode/two_sum.md" >}})
 <br />
 - [**系统**]({{< relref "/docs/os" >}})
 <br />
