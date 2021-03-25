@@ -1,6 +1,7 @@
 ---
 weight: 1
 bookFlatSection: true
+draft: true
 title: "Swap Bot"
 ---
 
