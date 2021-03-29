@@ -1105,6 +1105,15 @@ sort.Strings(monitored)
 
 跑几笔交易去对应的池子里面看看是什么原因
 
+## 03-28
+* 竞速套利
+	[以太坊Dex“夹”交易套利，和BCH分裂往事](https://zhuanlan.zhihu.com/p/346426764)
+* 交易排序
+	[以太坊交易流程及交易池 TXpool 分析](https://learnblockchain.cn/2019/06/03/eth-txpool)
+
+资料 学习社区 https://learnblockchain.cn/
+
+面试哥 区块链面试题 https://zhuanlan.zhihu.com/p/101417295
 
 
 ## bot 注意事项
@@ -1179,12 +1188,6 @@ sort.Strings(monitored)
 * 整理该文档
 * chain 和 pair的 关停 关闭routine
 * 同nonce串 geth tx排序 pending池 
-
-
-
-
-
-#### 熟悉truffle
 
 
 
