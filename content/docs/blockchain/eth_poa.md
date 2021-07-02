@@ -136,8 +136,23 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
         金额待确认 ok
         > var tx = {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", to: "0x1F207Af72a8D2E27f76626A840F11C824a438207", value: web3.toWei(1, "ether")}
 
-        var tx = {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", to: "0xf9e395B89517C47F2Ac64B8956e3E827eb03F72b", value: web3.toWei(1000, "ether")}
+        //ec2 
+        var tx = {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", to: "0xC5188375D8600A05e0d10a4bc2d6C1F5E8cFE1C5", value: web3.toWei(1000000, "ether")}
         undefined
+
+        //local
+        var tx = {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", to: "0x9825683d08bb898e086211dDd8c78403373bE7f2", value: web3.toWei(1000000, "ether")}
+        undefined
+
+
+        //cto
+        var tx = {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", to: "0x05090dEe912116f352a7d87e2BD9b7A9ac190210", value: web3.toWei(1000, "ether")}
+        undefined
+
+
+        var tx = {from: "0xed9d02e382b34818e88b88a309c7fe71e65f419d", to: "0x38584f649428ae7dBbF51D52F6f0C949Cab99076", value: web3.toWei(1000, "ether")}
+        undefined
+        
 
         0xed9d02e382b34818e88b88a309c7fe71e65f419d
         0x4234273A066B9Ec5b1C8bFfB8361765705f6C186
@@ -289,7 +304,7 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
     export DB_PORT=5432
     export DB_USERNAME=postgres
 
-    export SECRET_KEY_BASE="rV8dgqpE6bRD6rwfdhDmNls+ZEOBWopHQMSuxwCdNcRlfUs805DsY9lscaqQaqVW"
+    export SECRET_KEY_BASE="Yr4+vBDj3du35i12Tzvg4AUix8adBPpzIpbe89MUVZNxLnfI9Tp/Ykle/Pa3R0AM"
 
     export ETHEREUM_JSONRPC_VARIANT=geth
     export ETHEREUM_JSONRPC_HTTP_URL="https://mainnet.infura.io/v3/bb5bf63ee4454829987724ec4cebd8b6"
@@ -476,7 +491,7 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
     添加分支 //ok 
 
 
-export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
+    export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     
     export DB_HOST=localhost
     export DB_PASSWORD=postgres
@@ -520,6 +535,7 @@ export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     # Finally run the server
     $ PORT=4001 MIX_ENV=prod mix phx.server //pgrep beam pkill beam
     PORT=4001 MIX_ENV=prod iex -S mix phx.server
+    PORT=4001 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 
 * local explorer production test
     MIX_ENV=prod mix phx.gen.cert blockscout blockscout.local
@@ -533,7 +549,7 @@ export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     export DB_PASSWORD=postgres
     export DB_PORT=5432
     export DB_USERNAME=postgres
-    export SECRET_KEY_BASE="hqz0V4sHn9qi3RfZfKYSV8CNesItM6QMkZNfVHDH7lR1gMkKon+nKlnFHoECUXHc"
+    export SECRET_KEY_BASE="Nr3v5xbfyL94dvFzpVPAeL6QKiNT398a3MS5NXREzdvLwIZkHzJ7I2vi/+iB0tj8"
 
     export ETHEREUM_JSONRPC_VARIANT=geth
     export ETHEREUM_JSONRPC_HTTP_URL="http://localhost:22000"
@@ -556,12 +572,13 @@ export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout_dev"
     export SECRET_KEY_BASE="H5X12JEt2lwAh/1TwKGFL4nmDSWpca98axU3iWlG3eRnw38HgAbTgxg0PssL/eAc"
 
+
     export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     export DB_HOST=localhost
     export DB_PASSWORD=postgres
     export DB_PORT=5432
     export DB_USERNAME=postgres
-    export SECRET_KEY_BASE="hqz0V4sHn9qi3RfZfKYSV8CNesItM6QMkZNfVHDH7lR1gMkKon+nKlnFHoECUXHc"
+    export SECRET_KEY_BASE="Yr4+vBDj3du35i12Tzvg4AUix8adBPpzIpbe89MUVZNxLnfI9Tp/Ykle/Pa3R0AM"
 
     export ETHEREUM_JSONRPC_VARIANT=geth
     export ETHEREUM_JSONRPC_HTTP_URL="http://localhost:22000"
@@ -570,6 +587,8 @@ export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     export PORT=4000
     export COIN=POA
     export NETWORK=POA
+
+    export SUBNETWORK=Abel
 
 
 
@@ -705,6 +724,678 @@ contract EIP20Interface {
 2、执行合约交易
 3、查看账户内容
 
+* 浏览器标题
+
+## ec2
+Ae8GwpETvVFq3c90mLI1AY/7QtZvuyt9VtEp+eA8MBCuRzZ5knzvznMAfJHEqIlj
+
+    export LOGO="/images/abel2.svg"
+    export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
+    export SECRET_KEY_BASE="Ae8GwpETvVFq3c90mLI1AY/7QtZvuyt9VtEp+eA8MBCuRzZ5knzvznMAfJHEqIlj"
+
+    export LOGO="/images/abel2.svg"
+    export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
+    export DB_HOST=localhost
+    export DB_PASSWORD=postgres
+    export DB_PORT=5432
+    export DB_USERNAME=postgres
+    export SECRET_KEY_BASE="Ae8GwpETvVFq3c90mLI1AY/7QtZvuyt9VtEp+eA8MBCuRzZ5knzvznMAfJHEqIlj"
+
+    export ETHEREUM_JSONRPC_VARIANT=geth
+    export ETHEREUM_JSONRPC_HTTP_URL="http://localhost:22000"
+    export ETHEREUM_JSONRPC_WS_URL="ws://localhost:23000"
+
+    export PORT=4000
+    export COIN=Abel 
+    export NETWORK=Ethereum 
+
+    export SUBNETWORK=Abel
+    export BLOCK_TRANSFORMER=clique
+
+    // 根据CoinGecko 上的价格生成k图 https://www.coingecko.com/zh
+    //Ethereum or poa
+
+
+## 06-21
+* miner编号？
+    https://docs.blockscout.com/for-developers/information-and-settings/add-validator-metadata
+
+pragma solidity ^0.4.18;
+
+
+/**
+ * @title EternalStorage
+ * @dev This contract holds all the necessary state variables to carry out the storage of any contract
+ * and to support the upgrade functionality.
+ */
+contract EternalStorage {
+
+    // Version number of the current implementation
+    uint256 internal _version;
+
+    // Address of the current implementation
+    address internal _implementation;
+
+    // Storage mappings
+    mapping(bytes32 => uint256) internal uintStorage;
+    mapping(bytes32 => string) internal stringStorage;
+    mapping(bytes32 => address) internal addressStorage;
+    mapping(bytes32 => bytes) internal bytesStorage;
+    mapping(bytes32 => bool) internal boolStorage;
+    mapping(bytes32 => int256) internal intStorage;
+    mapping(bytes32 => bytes32) internal bytes32Storage;
+
+    mapping(bytes32 => uint256[]) internal uintArrayStorage;
+    mapping(bytes32 => string[]) internal stringArrayStorage;
+    mapping(bytes32 => address[]) internal addressArrayStorage;
+    //mapping(bytes32 => bytes[]) internal bytesArrayStorage;
+    mapping(bytes32 => bool[]) internal boolArrayStorage;
+    mapping(bytes32 => int256[]) internal intArrayStorage;
+    mapping(bytes32 => bytes32[]) internal bytes32ArrayStorage;
+
+    /**
+    * @dev Tells the version number of the current implementation
+    * @return uint representing the number of the current version
+    */
+    function version() public view returns (uint256) {
+        return _version;
+    }
+
+    /**
+    * @dev Tells the address of the current implementation
+    * @return address of the current implementation
+    */
+    function implementation() public view returns (address) {
+        return _implementation;
+    }
+
+}
+
+
+
+interface IKeysManager {
+    function initiateKeys(address) public;
+    function createKeys(address, address, address) public;
+    function isMiningActive(address) public view returns(bool);
+    function isVotingActive(address) public view returns(bool);
+    function isPayoutActive(address) public view returns(bool);
+    function getVotingByMining(address) public view returns(address);
+    function getPayoutByMining(address) public view returns(address);
+    function addMiningKey(address) public;
+    function addVotingKey(address, address) public;
+    function addPayoutKey(address, address) public;
+    function removeMiningKey(address) public;
+    function removeVotingKey(address) public;
+    function removePayoutKey(address) public;
+    function swapMiningKey(address, address) public;
+    function swapVotingKey(address, address) public;
+    function swapPayoutKey(address, address) public;
+    function getTime() public view returns(uint256);
+    function getMiningKeyHistory(address) public view returns(address);
+    function getMiningKeyByVoting(address) public view returns(address);
+    function getInitialKey(address) public view returns(uint8);
+    function migrateInitialKey(address) public;
+    function migrateMiningKey(address) public;
+}
+
+
+interface IProxyStorage {
+    function getKeysManager() public view returns(address);
+    function getBallotsStorage() public view returns(address);
+    function getVotingToChangeKeys() public view returns(address);
+    function getVotingToChangeMinThreshold() public view returns(address);
+    function getPoaConsensus() public view returns(address);
+    function initializeAddresses(address, address, address, address, address, address) public;
+    function setContractAddress(uint256, address) public;
+    function isValidator(address) public view returns(bool);
+}
+
+
+interface IBallotsStorage {
+    function setThreshold(uint256, uint8) public;
+    function getBallotThreshold(uint8) public view returns(uint256);
+    function getVotingToChangeThreshold() public view returns(address);
+    function getTotalNumberOfValidators() public view returns(uint256);
+    function getProxyThreshold() public view returns(uint256);
+    function getBallotLimitPerValidator() public view returns(uint256);
+    function getMaxLimitBallot() public view returns(uint256);
+}
+
+
+
+
+/**
+ * @title SafeMath
+ * @dev Math operations with safety checks that throw on error
+ */
+library SafeMath {
+    function mul(uint256 a, uint256 b) internal pure returns(uint256) {
+        if (a == 0) {
+            return 0;
+        }
+        uint256 c = a * b;
+        assert(c / a == b);
+        return c;
+    }
+
+    function div(uint256 a, uint256 b) internal pure returns(uint256) {
+        // assert(b > 0); // Solidity automatically throws when dividing by 0
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+        return c;
+    }
+
+    function sub(uint256 a, uint256 b) internal pure returns(uint256) {
+        assert(b <= a);
+        return a - b;
+    }
+
+    function add(uint256 a, uint256 b) internal pure returns(uint256) {
+        uint256 c = a + b;
+        assert(c >= a);
+        return c;
+    }
+}
+
+contract ValidatorMetadata is EternalStorage {
+    using SafeMath for uint256;
+
+    event MetadataCreated(address indexed miningKey);
+    event ChangeRequestInitiated(address indexed miningKey);
+    event CancelledRequest(address indexed miningKey);
+    event Confirmed(address indexed miningKey, address votingSender);
+    event FinalizedChange(address indexed miningKey);
+    event RequestForNewProxy(address newProxyAddress);
+    event ChangeProxyStorage(address newProxyAddress);
+
+    modifier onlyValidVotingKey(address _votingKey) {
+        IKeysManager keysManager = IKeysManager(getKeysManager());
+        require(keysManager.isVotingActive(_votingKey));
+        _;
+    }
+
+    modifier onlyFirstTime(address _votingKey) {
+        address miningKey = getMiningByVotingKey(_votingKey);
+        require(uintStorage[keccak256("validators", miningKey, "createdDate")] == 0);
+        _;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == addressStorage[keccak256("owner")]);
+        _;
+    }
+
+    function proxyStorage() public view returns (address) {
+        return addressStorage[keccak256("proxyStorage")];
+    }
+
+    function pendingProxyStorage() public view returns (address) {
+        return addressStorage[keccak256("pendingProxyStorage")];
+    }
+
+    function validators(address _miningKey) public view returns (
+        bytes32 firstName,
+        bytes32 lastName,
+        bytes32 licenseId,
+        string fullAddress,
+        bytes32 state,
+        bytes32 zipcode,
+        uint256 expirationDate,
+        uint256 createdDate,
+        uint256 updatedDate,
+        uint256 minThreshold
+    ) {
+        firstName = bytes32Storage[keccak256("validators", _miningKey, "firstName")];
+        lastName = bytes32Storage[keccak256("validators", _miningKey, "lastName")];
+        licenseId = bytes32Storage[keccak256("validators", _miningKey, "licenseId")];
+        fullAddress = stringStorage[keccak256("validators", _miningKey, "fullAddress")];
+        state = bytes32Storage[keccak256("validators", _miningKey, "state")];
+        zipcode = bytes32Storage[keccak256("validators", _miningKey, "zipcode")];
+        expirationDate = uintStorage[keccak256("validators", _miningKey, "expirationDate")];
+        createdDate = uintStorage[keccak256("validators", _miningKey, "createdDate")];
+        updatedDate = uintStorage[keccak256("validators", _miningKey, "updatedDate")];
+        minThreshold = uintStorage[keccak256("validators", _miningKey, "minThreshold")];
+    }
+
+    function pendingChanges(address _miningKey) public view returns (
+        bytes32 firstName,
+        bytes32 lastName,
+        bytes32 licenseId,
+        string fullAddress,
+        bytes32 state,
+        bytes32 zipcode,
+        uint256 expirationDate,
+        uint256 createdDate,
+        uint256 updatedDate,
+        uint256 minThreshold
+    ) {
+        firstName = bytes32Storage[keccak256("pendingChanges", _miningKey, "firstName")];
+        lastName = bytes32Storage[keccak256("pendingChanges", _miningKey, "lastName")];
+        licenseId = bytes32Storage[keccak256("pendingChanges", _miningKey, "licenseId")];
+        fullAddress = stringStorage[keccak256("pendingChanges", _miningKey, "fullAddress")];
+        state = bytes32Storage[keccak256("pendingChanges", _miningKey, "state")];
+        zipcode = bytes32Storage[keccak256("pendingChanges", _miningKey, "zipcode")];
+        expirationDate = uintStorage[keccak256("pendingChanges", _miningKey, "expirationDate")];
+        createdDate = uintStorage[keccak256("pendingChanges", _miningKey, "createdDate")];
+        updatedDate = uintStorage[keccak256("pendingChanges", _miningKey, "updatedDate")];
+        minThreshold = uintStorage[keccak256("pendingChanges", _miningKey, "minThreshold")];
+    }
+
+    function confirmations(address _miningKey) public view returns (
+        uint256 count,
+        address[] voters
+    ) {
+        return (
+            uintStorage[keccak256("confirmations", _miningKey, "count")],
+            addressArrayStorage[keccak256("confirmations", _miningKey, "voters")]
+        );
+    }
+
+    function pendingProxyConfirmations(address _newProxyAddress) public view returns (
+        uint256 count,
+        address[] voters
+    ) {
+        bytes32 countHash = keccak256("pendingProxyConfirmations", _newProxyAddress, "count");
+        bytes32 votersHash = keccak256("pendingProxyConfirmations", _newProxyAddress, "voters");
+
+        return (
+            uintStorage[countHash],
+            addressArrayStorage[votersHash]
+        );
+    }
+
+    function setProxyAddress(address _newProxyAddress) public onlyValidVotingKey(msg.sender) {
+        bytes32 pendingProxyStorageHash =
+            keccak256("pendingProxyStorage");
+
+        require(addressStorage[pendingProxyStorageHash] == address(0));
+        
+        addressStorage[pendingProxyStorageHash] = _newProxyAddress;
+        uintStorage[keccak256("pendingProxyConfirmations", _newProxyAddress, "count")] = 1;
+        addressArrayStorage[keccak256("pendingProxyConfirmations", _newProxyAddress, "voters")].push(msg.sender);
+        
+        RequestForNewProxy(_newProxyAddress);
+    }
+
+    function confirmNewProxyAddress(address _newProxyAddress)
+        public
+        onlyValidVotingKey(msg.sender)
+    {
+        bytes32 proxyStorageHash = keccak256("proxyStorage");
+        bytes32 pendingProxyStorageHash = keccak256("pendingProxyStorage");
+        bytes32 countHash = keccak256("pendingProxyConfirmations", _newProxyAddress, "count");
+        bytes32 votersHash = keccak256("pendingProxyConfirmations", _newProxyAddress, "voters");
+        
+        require(addressStorage[pendingProxyStorageHash] != address(0));
+        require(!isAddressAlreadyVotedProxy(_newProxyAddress, msg.sender));
+
+        uintStorage[countHash] = uintStorage[countHash].add(1);
+        addressArrayStorage[votersHash].push(msg.sender);
+        
+        if (uintStorage[countHash] >= 3) {
+            addressStorage[proxyStorageHash] = _newProxyAddress;
+            addressStorage[pendingProxyStorageHash] = address(0);
+            delete uintStorage[countHash];
+            delete addressArrayStorage[votersHash];
+            ChangeProxyStorage(_newProxyAddress);
+        }
+        
+        Confirmed(_newProxyAddress, msg.sender);
+    }
+
+    function initMetadata(
+        bytes32 _firstName,
+        bytes32 _lastName,
+        bytes32 _licenseId,
+        string _fullAddress,
+        bytes32 _state,
+        bytes32 _zipcode,
+        uint256 _expirationDate,
+        uint256 _createdDate,
+        uint256 _updatedDate,
+        uint256 _minThreshold,
+        address _miningKey
+    )
+        public
+        onlyOwner
+    {
+        IKeysManager keysManager = IKeysManager(getKeysManager());
+        require(keysManager.isMiningActive(_miningKey));
+        require(uintStorage[keccak256("validators", _miningKey, "createdDate")] == 0);
+        require(_createdDate != 0);
+        require(!boolStorage[keccak256("initMetadataDisabled")]);
+        bytes32Storage[keccak256("validators", _miningKey, "firstName")] = _firstName;
+        bytes32Storage[keccak256("validators", _miningKey, "lastName")] = _lastName;
+        bytes32Storage[keccak256("validators", _miningKey, "licenseId")] = _licenseId;
+        bytes32Storage[keccak256("validators", _miningKey, "state")] = _state;
+        stringStorage[keccak256("validators", _miningKey, "fullAddress")] = _fullAddress;
+        bytes32Storage[keccak256("validators", _miningKey, "zipcode")] = _zipcode;
+        uintStorage[keccak256("validators", _miningKey, "expirationDate")] = _expirationDate;
+        uintStorage[keccak256("validators", _miningKey, "createdDate")] = _createdDate;
+        uintStorage[keccak256("validators", _miningKey, "updatedDate")] = _updatedDate;
+        uintStorage[keccak256("validators", _miningKey, "minThreshold")] = _minThreshold;
+    }
+
+    function initMetadataDisable() public onlyOwner {
+        boolStorage[keccak256("initMetadataDisabled")] = true;
+    }
+
+    function createMetadata(
+        bytes32 _firstName,
+        bytes32 _lastName,
+        bytes32 _licenseId,
+        string _fullAddress,
+        bytes32 _state,
+        bytes32 _zipcode,
+        uint256 _expirationDate
+    )
+        public
+        onlyValidVotingKey(msg.sender)
+        onlyFirstTime(msg.sender)
+    {
+        address miningKey = getMiningByVotingKey(msg.sender);
+        bytes32Storage[keccak256("validators", miningKey, "firstName")] = _firstName;
+        bytes32Storage[keccak256("validators", miningKey, "lastName")] = _lastName;
+        bytes32Storage[keccak256("validators", miningKey, "licenseId")] = _licenseId;
+        bytes32Storage[keccak256("validators", miningKey, "state")] = _state;
+        stringStorage[keccak256("validators", miningKey, "fullAddress")] = _fullAddress;
+        bytes32Storage[keccak256("validators", miningKey, "zipcode")] = _zipcode;
+        uintStorage[keccak256("validators", miningKey, "expirationDate")] = _expirationDate;
+        uintStorage[keccak256("validators", miningKey, "createdDate")] = getTime();
+        uintStorage[keccak256("validators", miningKey, "updatedDate")] = 0;
+        uintStorage[keccak256("validators", miningKey, "minThreshold")] = getMinThreshold();
+        MetadataCreated(miningKey);
+    }
+
+    function changeRequest(
+        bytes32 _firstName,
+        bytes32 _lastName,
+        bytes32 _licenseId,
+        string _fullAddress,
+        bytes32 _state,
+        bytes32 _zipcode,
+        uint256 _expirationDate
+    )
+        public
+        onlyValidVotingKey(msg.sender)
+        returns(bool)
+    {
+        address miningKey = getMiningByVotingKey(msg.sender);
+        return changeRequestForValidator(
+            _firstName,
+            _lastName,
+            _licenseId,
+            _fullAddress,
+            _state,
+            _zipcode,
+            _expirationDate,
+            miningKey
+        );
+    }
+
+    function changeRequestForValidator(
+        bytes32 _firstName,
+        bytes32 _lastName,
+        bytes32 _licenseId,
+        string _fullAddress,
+        bytes32 _state,
+        bytes32 _zipcode,
+        uint256 _expirationDate,
+        address _miningKey
+    )
+        public
+        onlyValidVotingKey(msg.sender)
+        returns(bool) 
+    {
+        bytes32Storage[keccak256("pendingChanges", _miningKey, "firstName")] = _firstName;
+        bytes32Storage[keccak256("pendingChanges", _miningKey, "lastName")] = _lastName;
+        bytes32Storage[keccak256("pendingChanges", _miningKey, "licenseId")] = _licenseId;
+        bytes32Storage[keccak256("pendingChanges", _miningKey, "state")] = _state;
+        stringStorage[keccak256("pendingChanges", _miningKey, "fullAddress")] = _fullAddress;
+        bytes32Storage[keccak256("pendingChanges", _miningKey, "zipcode")] = _zipcode;
+        uintStorage[keccak256("pendingChanges", _miningKey, "expirationDate")] = _expirationDate;
+        uintStorage[keccak256("pendingChanges", _miningKey, "createdDate")] =
+            uintStorage[keccak256("validators", _miningKey, "createdDate")];
+        uintStorage[keccak256("pendingChanges", _miningKey, "updatedDate")] = getTime();
+        uintStorage[keccak256("pendingChanges", _miningKey, "minThreshold")] =
+            uintStorage[keccak256("validators", _miningKey, "minThreshold")];
+        
+        delete uintStorage[keccak256("confirmations", _miningKey, "count")];
+        delete addressArrayStorage[keccak256("confirmations", _miningKey, "voters")];
+        
+        ChangeRequestInitiated(_miningKey);
+        return true;
+    }
+
+    function cancelPendingChange() public onlyValidVotingKey(msg.sender) returns(bool) {
+        address miningKey = getMiningByVotingKey(msg.sender);
+        _deletePendingChange(miningKey);
+        CancelledRequest(miningKey);
+        return true;
+    }
+
+    function isAddressAlreadyVoted(address _miningKey, address _voter) public view returns(bool) {
+        bytes32 hash = keccak256("confirmations", _miningKey, "voters");
+        uint256 length = addressArrayStorage[hash].length;
+        for (uint256 i = 0; i < length; i++) {
+            if (addressArrayStorage[hash][i] == _voter) {
+                return true;   
+            }
+        }
+        return false;
+    }
+
+    function isAddressAlreadyVotedProxy(address _newProxy, address _voter) public view returns(bool) {
+        bytes32 hash = keccak256("pendingProxyConfirmations", _newProxy, "voters");
+        uint256 length = addressArrayStorage[hash].length;
+        for (uint256 i = 0; i < length; i++) {
+            if (addressArrayStorage[hash][i] == _voter) {
+                return true;   
+            }
+        }
+        return false;
+    }
+
+    function confirmPendingChange(address _miningKey) public onlyValidVotingKey(msg.sender) {
+        bytes32 votersHash = keccak256("confirmations", _miningKey, "voters");
+        bytes32 countHash = keccak256("confirmations", _miningKey, "count");
+        
+        require(!isAddressAlreadyVoted(_miningKey, msg.sender));
+        require(addressArrayStorage[votersHash].length <= 50); // no need for more confirmations
+
+        address miningKey = getMiningByVotingKey(msg.sender);
+        require(miningKey != _miningKey);
+
+        addressArrayStorage[votersHash].push(msg.sender);
+        uintStorage[countHash] = uintStorage[countHash].add(1);
+        Confirmed(_miningKey, msg.sender);
+    }
+
+    function finalize(address _miningKey) public onlyValidVotingKey(msg.sender) {
+        uint256 count =
+            uintStorage[keccak256("confirmations", _miningKey, "count")];
+        uint256 minThreshold =
+            uintStorage[keccak256("pendingChanges", _miningKey, "minThreshold")];
+
+        require(count >= minThreshold);
+        require(onlyIfChangeExist(_miningKey));
+
+        bytes32Storage[keccak256("validators", _miningKey, "firstName")] = 
+            bytes32Storage[keccak256("pendingChanges", _miningKey, "firstName")];
+        bytes32Storage[keccak256("validators", _miningKey, "lastName")] = 
+            bytes32Storage[keccak256("pendingChanges", _miningKey, "lastName")];
+        bytes32Storage[keccak256("validators", _miningKey, "licenseId")] = 
+            bytes32Storage[keccak256("pendingChanges", _miningKey, "licenseId")];
+        bytes32Storage[keccak256("validators", _miningKey, "state")] = 
+            bytes32Storage[keccak256("pendingChanges", _miningKey, "state")];
+        stringStorage[keccak256("validators", _miningKey, "fullAddress")] = 
+            stringStorage[keccak256("pendingChanges", _miningKey, "fullAddress")];
+        bytes32Storage[keccak256("validators", _miningKey, "zipcode")] = 
+            bytes32Storage[keccak256("pendingChanges", _miningKey, "zipcode")];
+        uintStorage[keccak256("validators", _miningKey, "expirationDate")] = 
+            uintStorage[keccak256("pendingChanges", _miningKey, "expirationDate")];
+        uintStorage[keccak256("validators", _miningKey, "createdDate")] = 
+            uintStorage[keccak256("pendingChanges", _miningKey, "createdDate")];
+        uintStorage[keccak256("validators", _miningKey, "updatedDate")] = 
+            uintStorage[keccak256("pendingChanges", _miningKey, "updatedDate")];
+        uintStorage[keccak256("validators", _miningKey, "minThreshold")] = 
+            uintStorage[keccak256("pendingChanges", _miningKey, "minThreshold")];
+        
+        _deletePendingChange(_miningKey);
+        FinalizedChange(_miningKey);
+    }
+
+    function getMiningByVotingKey(address _votingKey) public view returns(address) {
+        IKeysManager keysManager = IKeysManager(getKeysManager());
+        return keysManager.getMiningKeyByVoting(_votingKey);
+    }
+
+    function getTime() public view returns(uint256) {
+        return now;
+    }
+
+    function getMinThreshold() public view returns(uint256) {
+        uint8 thresholdType = 2;
+        IBallotsStorage ballotsStorage = IBallotsStorage(getBallotsStorage());
+        return ballotsStorage.getBallotThreshold(thresholdType);
+    }
+
+    function getBallotsStorage() public view returns(address) {
+        return IProxyStorage(proxyStorage()).getBallotsStorage();
+    }
+
+    function getKeysManager() public view returns(address) {
+        return IProxyStorage(proxyStorage()).getKeysManager();
+    }
+
+    function onlyIfChangeExist(address _miningKey) public view returns(bool) {
+        return uintStorage[keccak256("pendingChanges", _miningKey, "createdDate")] > 0;
+    }
+
+    function _deletePendingChange(address _miningKey) private {
+        delete bytes32Storage[keccak256("pendingChanges", _miningKey, "firstName")];
+        delete bytes32Storage[keccak256("pendingChanges", _miningKey, "lastName")];
+        delete bytes32Storage[keccak256("pendingChanges", _miningKey, "licenseId")];
+        delete bytes32Storage[keccak256("pendingChanges", _miningKey, "state")];
+        delete stringStorage[keccak256("pendingChanges", _miningKey, "fullAddress")];
+        delete bytes32Storage[keccak256("pendingChanges", _miningKey, "zipcode")];
+        delete uintStorage[keccak256("pendingChanges", _miningKey, "expirationDate")];
+        delete uintStorage[keccak256("pendingChanges", _miningKey, "createdDate")];
+        delete uintStorage[keccak256("pendingChanges", _miningKey, "updatedDate")];
+        delete uintStorage[keccak256("pendingChanges", _miningKey, "minThreshold")];
+    }
+}
+
+
+* 本地测试metadata管不管用
+    只用一个meta contract
+    meta
+    0x6de8c3548bd1aa8e68f50b2235c80f7dc32a93edd80705161e77c8446ce02e6a
+
+    validator
+    0x3892dd7cb2048e8447520d7696dbd62c1adc2a3b3fa326249cb3333f8158bd3e
+
+    secret
+    cnnYJyfus7mw4rF4bcn3WzPbOGQ84BGQf8dTiq6Nt/N1GFfcocMbuSO25Lj/dtTN
+
+
+
+    export LOGO="/images/abel2.svg"
+    export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
+    export DB_HOST=localhost
+    export DB_PASSWORD=postgres
+    export DB_PORT=5432
+    export DB_USERNAME=postgres
+    export SECRET_KEY_BASE="rw+9ZAP3yIYL8nhhKyz1J8l8pN08MooB5HmojzJngP/hXY7NRp3PWQGqZYyvN5IX"
+
+    export ETHEREUM_JSONRPC_VARIANT=geth
+    export ETHEREUM_JSONRPC_HTTP_URL="http://localhost:22000"
+    export ETHEREUM_JSONRPC_WS_URL="ws://localhost:23000"
+    export ETHEREUM_JSONRPC_TRACE_URL="http://localhost:22000"
+    export BLOCK_TRANSFORMER=clique
+
+    export PORT=4000
+    export COIN=Abel 
+    export NETWORK=Ethereum 
+
+    export SUBNETWORK=Abel
+
+    mix do ecto.drop, ecto.create, ecto.migrate
+
+    
+    export METADATA_CONTRACT="0x6a27C634F21bcA2A4655A5c8a0a43bf43fA93361"
+    
+    export VALIDATORS_CONTRACT="0xd0C59eC469ec5EE30C78A4F90fbBec23D243dee7"
+0xd0C59eC469ec5EE30C78A4F90fbBec23D243dee7
+
+* 删掉浏览器库 重新试一下
+
+* 如果不能用继续找合约或者直接看源代码
+
+## 06-22
+* 测试weth //ok
+* validator
+    🤔istanbul的协议貌似在这里不好使 不过跑起来的话 validator的显示倒也行
+    可以换成clique
+* 改ether显示为abel
+    查看配置文件有无 //无
+    测试改一下coin? //不行
+    直接修改页面 //可以修改一部分
+    需要需改view层
+
+
+## 06-23
+* 熟悉elixir
+* validator
+    线上添加了validator的显示
+    可以看看有什么影响
+* 改ether显示为abel
+    需要需改view层
+
+
+## 06-24
+* 熟悉elixir
+* validator
+    线上添加了validator的显示
+    可以看看有什么影响
+* 改ether显示为abel
+    需要需改view层
+
+
+## 06-25
+* 熟悉elixir
+
+
+## 06-28
+* 熟悉elixir
+* 熟悉phoenix
+
+
+## 06-29
+* 熟悉elixir
+* 熟悉phoenix
+* 看书
+
+## 06-30
+* 熟悉elixir
+* 熟悉phoenix
+* 看书
+
+## 07-01
+* phoenix in action //ok
+* 修改yun-explorer ether 转 abel  //OK
+    启动测试 //ok
+    https://phrase.com/blog/posts/i18n-for-phoenix-applications-with-gettext/
+
+## 07-02
+* 浏览器 测试上线
+    重新编译
+    正式编译
+    看看还有什么要改
+* swap 跑起来试一下
+    https://www.youtube.com/watch?v=J4g8jQoZkrY
+    https://www.youtube.com/watch?v=U3fTTqHy7F4
+    https://www.google.com/search?q=sushiswap+interface+run+local&oq=sushiswap+interface+run+local&aqs=chrome..69i57j33i160l3.8719j1j15&sourceid=chrome&ie=UTF-8
 
 
 
@@ -713,5 +1404,13 @@ contract EIP20Interface {
     需要配置
 * 导航 要不要搞成不要下拉的
 * rpc页面
+* 修改浏览器title //ok
 * token的显示问题 //转账后就有
 * token余额在小狐狸里的显示问题 //转账后添加即可
+* k8部署
+* 转币给cto //ok
+* 更改 浏览器的基础币显示 
+* 首页k线 //ok
+* 多节点部署测试
+* 浏览器显示修改完上测试链
+* swap修改
