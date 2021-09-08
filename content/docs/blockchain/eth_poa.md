@@ -518,6 +518,9 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
     export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/hello_dev"
     export SECRET_KEY_BASE=/yE0cGYqnYf5l/rYuFlv78vAavCmupiptkInvvvd0Hr4o04VaIrDKzUYECvt5jjL
 
+    local export SECRET_KEY_BASE=BXUYEOhkzN30P6C5S68PfL3+TqDQbwrH2QeCqQcuZD2o6/McxMuWebtZEGZXi5lg
+export SECRET_KEY_BASE=WagHCv8WI6RDa4CU87XCgFEI2fvf4R34h6HCQMpe9iskrgFSRVrUe8nqExXo1LP4
+
     # Initial setup
     $ mix deps.get --only prod
     $ MIX_ENV=prod mix compile
@@ -536,14 +539,16 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
     $ PORT=4001 MIX_ENV=prod mix phx.server //pgrep beam pkill beam
     PORT=4001 MIX_ENV=prod iex -S mix phx.server
     PORT=4001 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+    PORT=4001  elixir --erl "-detached" -S mix phx.server
 
 * local explorer production test
     MIX_ENV=prod mix phx.gen.cert blockscout blockscout.local
 
     export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout_dev"
-    export SECRET_KEY_BASE="hqz0V4sHn9qi3RfZfKYSV8CNesItM6QMkZNfVHDH7lR1gMkKon+nKlnFHoECUXHc"
+    export SECRET_KEY_BASE="8I6PIQh18pnNtEC6DmJCqqfHD3FdscwE021yS+dwTchyFfQY96rbx6pKvGLSu3Kq"
 
 
+    export SECRET_KEY_BASE=8I6PIQh18pnNtEC6DmJCqqfHD3FdscwE021yS+dwTchyFfQY96rbx6pKvGLSu3Kq
     export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     export DB_HOST=localhost
     export DB_PASSWORD=postgres
@@ -554,10 +559,13 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
     export ETHEREUM_JSONRPC_VARIANT=geth
     export ETHEREUM_JSONRPC_HTTP_URL="http://localhost:22000"
     export ETHEREUM_JSONRPC_WS_URL="ws://localhost:23000"
+    export BLOCK_TRANSFORMER=clique
 
     export PORT=4000
-    export COIN=POA
-    export NETWORK=POA
+    export COIN=Abel 
+    export NETWORK=Ethereum 
+
+    export SUBNETWORK=Abel
 
 
 ## 06-17
@@ -573,6 +581,7 @@ https://docs.blockscout.com/for-users/smart-contract-interaction/verifying-a-sma
     export SECRET_KEY_BASE="H5X12JEt2lwAh/1TwKGFL4nmDSWpca98axU3iWlG3eRnw38HgAbTgxg0PssL/eAc"
 
 
+    export LOGO="/images/abel2.svg"
     export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockscout"
     export DB_HOST=localhost
     export DB_PASSWORD=postgres
@@ -747,7 +756,7 @@ Ae8GwpETvVFq3c90mLI1AY/7QtZvuyt9VtEp+eA8MBCuRzZ5knzvznMAfJHEqIlj
 
     export PORT=4000
     export COIN=Abel 
-    export NETWORK=Ethereum 
+    export NETWORK=Abel
 
     export SUBNETWORK=Abel
     export BLOCK_TRANSFORMER=clique
@@ -1381,27 +1390,51 @@ contract ValidatorMetadata is EternalStorage {
 * 熟悉phoenix
 * 看书
 
+
 ## 07-01
 * phoenix in action //ok
 * 修改yun-explorer ether 转 abel  //OK
     启动测试 //ok
     https://phrase.com/blog/posts/i18n-for-phoenix-applications-with-gettext/
 
+
 ## 07-02
-* 浏览器 测试上线
+* 浏览器 测试上线 // 需要测试ssl
     重新编译
     正式编译
     看看还有什么要改
-* swap 跑起来试一下
+* swap 跑起来试一下 
     https://www.youtube.com/watch?v=J4g8jQoZkrY
     https://www.youtube.com/watch?v=U3fTTqHy7F4
     https://www.google.com/search?q=sushiswap+interface+run+local&oq=sushiswap+interface+run+local&aqs=chrome..69i57j33i160l3.8719j1j15&sourceid=chrome&ie=UTF-8
 
 
+## 07-05
+* 修改swap样式  //logo icon swap按钮 ok
+* react in action
+
+
+## 07-06
+* 尝试修改字体颜色和跳出来的颜色 //ok
+https://www.youtube.com/watch?v=0Im5iaYoz1Y // swap
+
+
+## 07-07
+* deploy swap interface //ok
+* test interface git  //ok
+*  http-server ./ & //ok
+* 修改swap链接到其他网时候的 menu //ok
+* 修改未链接钱包的按钮 //ok
+
+
+
+
+
 
 ## 问题待办
-* 确认为什么交易的 miner 编号是00000
-    需要配置
+* 确认为什么交易的 miner 编号是00000 //ok
+    需要配置 //ok
+    可以换共识
 * 导航 要不要搞成不要下拉的
 * rpc页面
 * 修改浏览器title //ok
@@ -1409,8 +1442,12 @@ contract ValidatorMetadata is EternalStorage {
 * token余额在小狐狸里的显示问题 //转账后添加即可
 * k8部署
 * 转币给cto //ok
-* 更改 浏览器的基础币显示 
+* 更改 浏览器的基础币显示  //ok
 * 首页k线 //ok
 * 多节点部署测试
-* 浏览器显示修改完上测试链
-* swap修改
+* 浏览器显示修改完上测试链 // 需要测试ssl
+* swap修改 //ok
+    安装nginx 设定规则404转首页
+* 桥
+* 存储生利
+* 抵押借贷
