@@ -5,6 +5,8 @@ headless: true
 <br />
 - [**系统**]({{< relref "/docs/os" >}})
 <br />
+- [**编译原理**]({{< relref "/docs/compilers" >}})
+  <br />
 - [**网络**]({{< relref "/docs/network" >}})
 <br />
 - [**Golang**]({{< relref "/docs/golang" >}})
