@@ -1,7 +1,7 @@
 ---
 weight: 1
 bookFlatSection: true
-title: 二分查找
+title: 选择查找
 ---
 
 # 选择查找
