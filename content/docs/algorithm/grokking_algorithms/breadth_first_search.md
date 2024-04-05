@@ -4,6 +4,8 @@ bookFlatSection: true
 title: 广度优先搜索
 ---
 
+# 广度优先搜索
+
 ```shell
 package main
 
