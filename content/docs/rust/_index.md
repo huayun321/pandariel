@@ -1,7 +1,7 @@
 ---
 weight: 1
 bookFlatSection: true
-title: "Rust Programing"
+title: "Rust"
 ---
 
 # <Rust Programing>《Rust权威指南》
