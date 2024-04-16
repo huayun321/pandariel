@@ -6,12 +6,14 @@ title: "Nana Go Tutorial"
 
 # Nana 的 Go Tutorial
 
+main.go
 ```shell
 package main
 
 import (
+	"booking/helper"
 	"fmt"
-	"strings"
+	"time"
 )
 
 var conferenceName = "Go Conference"
@@ -19,7 +21,16 @@ var conferenceName = "Go Conference"
 const conferenceTickets int = 50
 
 var remainingTickets uint = 50
-var bookings []string
+var bookings = make([]UserData, 0)
+
+type UserData struct {
+	firstname       string
+	lastname        string
+	email           string
+	numberOfTickets uint
+}
+
+//var wg = sync.WaitGroup{}
 
 func main() {
 
@@ -28,10 +39,13 @@ func main() {
 	for {
 		firstName, lastName, email, userTickets := getUserInput()
 
-		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
+		isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber {
-			bookings = bookTicket(bookings, firstName, lastName, remainingTickets, userTickets)
+			bookings = bookTicket(bookings, firstName, lastName, remainingTickets, userTickets, email)
+
+			//wg.Add(1)
+			go sendTicket(UserData{firstname: firstName, lastname: lastName, email: email, numberOfTickets: userTickets})
 
 			firstNames := getFirstNames(bookings)
 			fmt.Printf("The first names of bookings are %v \n", firstNames)
@@ -44,7 +58,7 @@ func main() {
 			fmt.Printf("Your input data is invalid, try again. \n")
 		}
 	}
-
+	//wg.Wait()
 }
 
 func greetUsers(conferenceName string, conferenceTickets int, remainingTickets uint) {
@@ -53,22 +67,14 @@ func greetUsers(conferenceName string, conferenceTickets int, remainingTickets u
 	fmt.Println("Get your tickets here to attend")
 }
 
-func getFirstNames(bookings []string) []string {
+func getFirstNames(bookings []UserData) []string {
 	var firstNames []string
 	for _, v := range bookings {
-		firstNames = append(firstNames, strings.Fields(v)[0])
+		firstNames = append(firstNames, v.firstname)
 	}
 	fmt.Println("dsf", firstNames)
 
 	return firstNames
-}
-
-func validateUserInput(firstName, lastName, email string, userTickets, remainingTickets uint) (bool, bool, bool) {
-	isValidName := len(firstName) >= 2 && len(lastName) >= 2
-	isValidEmail := strings.Contains(email, "@")
-	isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
-
-	return isValidName, isValidEmail, isValidTicketNumber
 }
 
 func getUserInput() (string, string, string, uint) {
@@ -92,11 +98,20 @@ func getUserInput() (string, string, string, uint) {
 	return firstName, lastName, email, userTickets
 }
 
-func bookTicket(bookings []string, firstName, lastName string, remainingTickets, userTickets uint) []string {
-	bookings = append(bookings, firstName+" "+lastName)
+func bookTicket(bookings []UserData, firstName, lastName string, remainingTickets, userTickets uint, email string) []UserData {
+
+	userData := UserData{
+		firstname:       firstName,
+		lastname:        lastName,
+		email:           email,
+		numberOfTickets: userTickets,
+	}
+
+	bookings = append(bookings, userData)
+	fmt.Println("Bookings ", bookings)
 
 	firstNames := getFirstNames(bookings)
-	fmt.Println("Bookings ", firstNames)
+	fmt.Println("firstNames ", firstNames)
 
 	remainingTickets = remainingTickets - userTickets
 	fmt.Println("remainingTickets ", remainingTickets)
@@ -104,8 +119,32 @@ func bookTicket(bookings []string, firstName, lastName string, remainingTickets,
 	return bookings
 }
 
-```
+func sendTicket(data UserData) {
+	time.Sleep(10 * time.Second)
+	ticket := fmt.Sprintf("%v ticket for %v %v", data.numberOfTickets, data.firstname, data.lastname)
+	fmt.Println("########")
+	fmt.Printf("sending ticket:\n %v \n to email address %v \n", ticket, data.email)
+	fmt.Println("########")
+	//wg.Done()
+}
 
+```
+helper.go
+
+```shell
+package helper
+
+import "strings"
+
+func ValidateUserInput(firstName, lastName, email string, userTickets, remainingTickets uint) (bool, bool, bool) {
+	isValidName := len(firstName) >= 2 && len(lastName) >= 2
+	isValidEmail := strings.Contains(email, "@")
+	isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+
+	return isValidName, isValidEmail, isValidTicketNumber
+}
+
+```
 
 ### 资源
 * [Nana go tutorial](https://www.youtube.com/watch?v=yyUHQIec83I)
