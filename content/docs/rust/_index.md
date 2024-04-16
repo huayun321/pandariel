@@ -9,4 +9,4 @@ title: "Rust"
 ![](./rust_programing.png)
 
 ### 资源
-[github](https://github.com/huayun321/rust-programing)
+[github 代码练习](https://github.com/huayun321/rust-programing)
