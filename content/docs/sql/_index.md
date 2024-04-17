@@ -6,6 +6,7 @@ title: "SQL"
 
 # SQL
 SQL(发音为字母 S-Q-L或sequel)是Structured Query Language(结构化查询语言)的缩写。
+
 SQL是一种专门用来与数据库沟通的语言。
 ## 数据库
 以某种有组织的方式存储数据的集合。
