@@ -6,7 +6,7 @@ title: "SQL in 10 Minutes"
 
 # 《SQL 必知必会》
 
-![](./sql10.png)
+![](../sql10.png)
 
 ## 检索数据
 
