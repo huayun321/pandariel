@@ -6,7 +6,7 @@ title: "SQL in 10 Minutes"
 
 # 《SQL 必知必会》
 
-![](./sql_in_10.drawio.png)
+![](./sql10.png)
 
 ## 检索数据
 
@@ -143,5 +143,5 @@ from products;
 ```
 
 ### 资源
-[Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
-[10 Best UML Diagram Software Tools in 2024](https://clickup.com/blog/uml-diagram-software/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_____&gad_source=1&gclid=CjwKCAjwz42xBhB9EiwA48pT76ag9XqDHJmZQGdsLmJn_KnKQVz8ZXNdcj_sExTpyqzzu3A5aH2NdRoCKz4QAvD_BwE)
+* [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
+* [10 Best UML Diagram Software Tools in 2024](https://clickup.com/blog/uml-diagram-software/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_____&gad_source=1&gclid=CjwKCAjwz42xBhB9EiwA48pT76ag9XqDHJmZQGdsLmJn_KnKQVz8ZXNdcj_sExTpyqzzu3A5aH2NdRoCKz4QAvD_BwE)
