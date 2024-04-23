@@ -346,6 +346,176 @@ mysql> select cust_name
 2 rows in set (0.00 sec)
 ```
 
-### 资源
+## 高级数据过滤
+### 组合where子句
+#### and 操作符
+```sql
+mysql> select prod_id, prod_price, prod_name
+    -> from products
+    -> where vend_id = 'DLL01' and prod_price <= 4;
++---------+------------+---------------------+
+| prod_id | prod_price | prod_name           |
++---------+------------+---------------------+
+| BNBG01  |       3.49 | Fish bean bag toy   |
+| BNBG02  |       3.49 | Bird bean bag toy   |
+| BNBG03  |       3.49 | Rabbit bean bag toy |
++---------+------------+---------------------+
+3 rows in set (0.00 sec)
+```
+
+#### or操作符
+````sql
+mysql> select prod_name, prod_price
+    -> from products
+    -> where vend_id = 'DLL01' or vend_id = 'BRS01';
++---------------------+------------+
+| prod_name           | prod_price |
++---------------------+------------+
+| 8 inch teddy bear   |       5.99 |
+| 12 inch teddy bear  |       8.99 |
+| 18 inch teddy bear  |      11.99 |
+| Fish bean bag toy   |       3.49 |
+| Bird bean bag toy   |       3.49 |
+| Rabbit bean bag toy |       3.49 |
+| Raggedy Ann         |       4.99 |
++---------------------+------------+
+7 rows in set (0.00 sec)
+````
+
+#### 求值顺序
+```sql
+mysql> select prod_name, prod_price
+    -> from products
+    -> where vend_id = 'DLL01' or vend_id = 'BRS01'
+    -> and prod_price >= 10;
++---------------------+------------+
+| prod_name           | prod_price |
++---------------------+------------+
+| 18 inch teddy bear  |      11.99 |
+| Fish bean bag toy   |       3.49 |
+| Bird bean bag toy   |       3.49 |
+| Rabbit bean bag toy |       3.49 |
+| Raggedy Ann         |       4.99 |
++---------------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> select prod_name, prod_price
+    -> from products
+    -> where (vend_id = 'DLL01' or vend_id = 'BRS01')
+    -> and prod_price >= 10;
++--------------------+------------+
+| prod_name          | prod_price |
++--------------------+------------+
+| 18 inch teddy bear |      11.99 |
++--------------------+------------+
+1 row in set (0.00 sec)
+```
+
+### in 操作符
+```sql
+mysql> select prod_name, prod_price 
+    -> from products
+    -> where vend_id in ('DLL011', 'BRS01')
+    -> order by prod_name;
++--------------------+------------+
+| prod_name          | prod_price |
++--------------------+------------+
+| 12 inch teddy bear |       8.99 |
+| 18 inch teddy bear |      11.99 |
+| 8 inch teddy bear  |       5.99 |
++--------------------+------------+
+3 rows in set (0.00 sec)
+```
+
+### not 操作符
+```sql
+mysql> select prod_name
+    -> from products
+    -> where not vend_id = 'DLL01'
+    -> order by prod_name;
++--------------------+
+| prod_name          |
++--------------------+
+| 12 inch teddy bear |
+| 18 inch teddy bear |
+| 8 inch teddy bear  |
+| King doll          |
+| Queen doll         |
++--------------------+
+5 rows in set (0.00 sec)
+```
+
+## 用通配符进行过滤
+### like 操作符
+#### 百分号(%)通配符
+```sql
+mysql> select prod_id, prod_name
+    -> from products
+    -> where prod_name like 'Fish%';
++---------+-------------------+
+| prod_id | prod_name         |
++---------+-------------------+
+| BNBG01  | Fish bean bag toy |
++---------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select prod_id, prod_name
+    -> from products
+    -> where prod_name like '%bean bag%';
++---------+---------------------+
+| prod_id | prod_name           |
++---------+---------------------+
+| BNBG01  | Fish bean bag toy   |
+| BNBG02  | Bird bean bag toy   |
+| BNBG03  | Rabbit bean bag toy |
++---------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select prod_name
+    -> from products
+    -> where prod_name like 'F%y';
++-------------------+
+| prod_name         |
++-------------------+
+| Fish bean bag toy |
++-------------------+
+1 row in set (0.00 sec)
+
+
+```
+
+#### 下划线通配符
+```sql
+mysql> select prod_id, prod_name
+    -> from products
+    -> where prod_name like '__ inch teddy bear';
++---------+--------------------+
+| prod_id | prod_name          |
++---------+--------------------+
+| BR02    | 12 inch teddy bear |
+| BR03    | 18 inch teddy bear |
++---------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select prod_id, prod_name
+    -> from products
+    -> where prod_name like '% inch teddy bear';
++---------+--------------------+
+| prod_id | prod_name          |
++---------+--------------------+
+| BR01    | 8 inch teddy bear  |
+| BR02    | 12 inch teddy bear |
+| BR03    | 18 inch teddy bear |
++---------+--------------------+
+3 rows in set (0.01 sec)
+```
+
+### 使用通配符的技巧
+* 不过度使用通配符
+* 在确实需要使用通配符时，也尽量不要把它们凡在搜索模式的开始处
+* 仔细注意通配符的位置
+
+
+## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
 * [10 Best UML Diagram Software Tools in 2024](https://clickup.com/blog/uml-diagram-software/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_____&gad_source=1&gclid=CjwKCAjwz42xBhB9EiwA48pT76ag9XqDHJmZQGdsLmJn_KnKQVz8ZXNdcj_sExTpyqzzu3A5aH2NdRoCKz4QAvD_BwE)
