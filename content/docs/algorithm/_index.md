@@ -31,3 +31,6 @@ title: "算法"
 
 ## 怎么学习算法
 基础搞起，刷题走起，目标驱动。
+
+### 学习资源
+* [Data Structure Visualizations](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
