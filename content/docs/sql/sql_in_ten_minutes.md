@@ -516,6 +516,96 @@ mysql> select prod_id, prod_name
 * 仔细注意通配符的位置
 
 
+## 创建计算字段
+### 计算字段
+转换计算或格式转化的字段
+
+### 拼接字段
+
+```sql
+mysql> select concat(vend_name, '(', vend_country, ')') from vendors order by vend_name;
++-------------------------------------------+
+| concat(vend_name, '(', vend_country, ')') |
++-------------------------------------------+
+| Bear Emporium(USA)                        |
+| Bears R Us(USA)                           |
+| Doll House Inc.(USA)                      |
+| Fun and Games(England)                    |
+| Furball Inc.(USA)                         |
+| Jouets et ours(France)                    |
++-------------------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select concat(rtrim(vend_name), '(', rtrim(vend_country), ')') from vendors  order by vend_name ;
++---------------------------------------------------------+
+| concat(rtrim(vend_name), '(', rtrim(vend_country), ')') |
++---------------------------------------------------------+
+| Bear Emporium(USA)                                      |
+| Bears R Us(USA)                                         |
+| Doll House Inc.(USA)                                    |
+| Fun and Games(England)                                  |
+| Furball Inc.(USA)                                       |
+| Jouets et ours(France)                                  |
++---------------------------------------------------------+
+6 rows in set (0.01 sec)
+```
+
+#### 使用别名
+```sql
+mysql> select concat(rtrim(vend_name), '(', rtrim(vend_country), ')')
+    -> as vend_title
+    -> from vendors
+    -> order by vend_name;
++------------------------+
+| vend_title             |
++------------------------+
+| Bear Emporium(USA)     |
+| Bears R Us(USA)        |
+| Doll House Inc.(USA)   |
+| Fun and Games(England) |
+| Furball Inc.(USA)      |
+| Jouets et ours(France) |
++------------------------+
+6 rows in set (0.00 sec)
+```
+
+### 执行算术计算
+```sql
+mysql> select prod_id, quantity, item_price
+    -> from orderItems
+    -> where order_num = 20008;
++---------+----------+------------+
+| prod_id | quantity | item_price |
++---------+----------+------------+
+| RGAN01  |        5 |       4.99 |
+| BR03    |        5 |      11.99 |
+| BNBG01  |       10 |       3.49 |
+| BNBG02  |       10 |       3.49 |
+| BNBG03  |       10 |       3.49 |
++---------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select prod_id,
+    -> quantity,
+    -> item_price,
+    -> quantity*item_price as expanded_price
+    -> from orderItems
+    -> where order_num = 20008;
++---------+----------+------------+----------------+
+| prod_id | quantity | item_price | expanded_price |
++---------+----------+------------+----------------+
+| RGAN01  |        5 |       4.99 |          24.95 |
+| BR03    |        5 |      11.99 |          59.95 |
+| BNBG01  |       10 |       3.49 |          34.90 |
+| BNBG02  |       10 |       3.49 |          34.90 |
+| BNBG03  |       10 |       3.49 |          34.90 |
++---------+----------+------------+----------------+
+5 rows in set (0.00 sec)
+
+```
+
+
+
 ## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
 * [10 Best UML Diagram Software Tools in 2024](https://clickup.com/blog/uml-diagram-software/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_____&gad_source=1&gclid=CjwKCAjwz42xBhB9EiwA48pT76ag9XqDHJmZQGdsLmJn_KnKQVz8ZXNdcj_sExTpyqzzu3A5aH2NdRoCKz4QAvD_BwE)
