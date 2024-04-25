@@ -604,6 +604,86 @@ mysql> select prod_id,
 
 ```
 
+## 使用函数处理数据
+### 函数带来的问题
+可移植性差
+
+### 使用函数
+#### 文本处理函数
+```sql
+mysql> select vend_name, upper(vend_name) as vend_name_upcase                       -> from vendors
+    -> order by vend_name;
++-----------------+------------------+
+| vend_name       | vend_name_upcase |
++-----------------+------------------+
+| Bear Emporium   | BEAR EMPORIUM    |
+| Bears R Us      | BEARS R US       |
+| Doll House Inc. | DOLL HOUSE INC.  |
+| Fun and Games   | FUN AND GAMES    |
+| Furball Inc.    | FURBALL INC.     |
+| Jouets et ours  | JOUETS ET OURS   |
++-----------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> select cust_name, cust_contact
+    -> from customers
+    -> where soundex(cust_contact)=soundex('Michael Green');
++------------+----------------+
+| cust_name  | cust_contact   |
++------------+----------------+
+| Kids Place | Michelle Green |
++------------+----------------+
+1 row in set (0.01 sec)
+```
+
+#### 日期和时间处理函数
+```sql
+mysql> select order_num
+    -> from orders
+    -> where year(order_date) = 2020;
++-----------+
+| order_num |
++-----------+
+|     20005 |
+|     20006 |
+|     20007 |
+|     20008 |
+|     20009 |
++-----------+
+5 rows in set (0.01 sec)
+```
+
+```sql
+mysql>  select cust_id, cust_name,
+    -> upper(concat(substring(cust_contact, 1, 2), substring(cust_city, 1, 3)))
+    -> as user_login
+    -> from customers;
++------------+---------------+------------+
+| cust_id    | cust_name     | user_login |
++------------+---------------+------------+
+| 1000000001 | Village Toys  | JODET      |
+| 1000000002 | Kids Place    | MICOL      |
+| 1000000003 | Fun4All       | JIMUN      |
+| 1000000004 | Fun4All       | DEPHO      |
+| 1000000005 | The Toy Store | KICHI      |
++------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> select order_num, order_date
+    -> from orders
+    -> where year(order_date) = 2020
+    -> and month(order_date) = 1
+    -> order by order_date desc;
+    +-----------+---------------------+
+    | order_num | order_date          |
+    +-----------+---------------------+
+    |     20007 | 2020-01-30 00:00:00 |
+    |     20006 | 2020-01-12 00:00:00 |
+    +-----------+---------------------+
+    2 rows in set (0.01 sec)
+```
 
 
 ## 资源
