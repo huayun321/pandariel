@@ -685,6 +685,151 @@ mysql> select order_num, order_date
     2 rows in set (0.01 sec)
 ```
 
+## 汇总数据
+### 聚集函数
+* AVG()
+* COUNT()
+* MAX()
+* MIN()
+* SUM()
+
+#### AVG函数
+```sql
+mysql> select avg(prod_price) as avg_price
+    -> from products;
++-----------+
+| avg_price |
++-----------+
+|  6.823333 |
++-----------+
+1 row in set (0.01 sec)
+
+
+mysql> select avg(prod_price) as avg_price
+    -> from products
+    -> where vend_id = 'DLL01';
++-----------+
+| avg_price |
++-----------+
+|  3.865000 |
++-----------+
+1 row in set (0.01 sec)
+```
+
+#### COUNT函数
+* count(*)包含null
+* count(column)忽略null
+
+```sql
+mysql> select count(*) as num_cust
+    -> from customers;
++----------+
+| num_cust |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(cust_email)_custum 
+    -> from customers;
++----------+
+| num_cust |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+```
+
+#### MAX()函数
+
+```sql
+
+mysql> select max(prod_price) as max_price 
+    -> from products;
++-----------+
+| max_price |
++-----------+
+|     11.99 |
++-----------+
+1 row in set (0.00 sec)
+```
+
+#### MIN()函数
+```sql
+mysql> select min(prod_price) as min_price
+    -> from products;
++-----------+
+| min_price |
++-----------+
+|      3.49 |
++-----------+
+1 row in set (0.00 sec)
+```
+
+#### SUM()函数
+```sql
+mysql> select sum(quantity) as items_ordered 
+    -> from orderItems
+    -> where order_num = 20005;
++---------------+
+| items_ordered |
++---------------+
+|           200 |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(item_price*quantity) as total_price
+    -> from orderItems
+    -> where order_num = 20005;
++-------------+
+| total_price |
++-------------+
+|     1648.00 |
++-------------+
+1 row in set (0.00 sec)
+```
+
+### 聚集不同值
+```sql
+mysql> select avg(distinct prod_price) as avg_price
+    -> from products
+    -> where vend_id='DLL01';
++-----------+
+| avg_price |
++-----------+
+|  4.240000 |
++-----------+
+1 row in set (0.01 sec)
+```
+
+### 组合聚集函数
+```sql
+mysql> select count(*) as num_items,
+    -> min(prod_price) as price_min,
+    -> max(prod_price) as price_max,
+    -> avg(prod_price) as price_avg
+    -> from products;
++-----------+-----------+-----------+-----------+
+| num_items | price_min | price_max | price_avg |
++-----------+-----------+-----------+-----------+
+|         9 |      3.49 |     11.99 |  6.823333 |
++-----------+-----------+-----------+-----------+
+1 row in set (0.00 sec)
+```
+
+
+```sql
+mysql> select max(prod_price) 
+    -> from products
+    -> where prod_price < 10;
++-----------------+
+| max(prod_price) |
++-----------------+
+|            9.49 |
++-----------------+
+1 row in set (0.00 sec)
+```
 
 ## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
