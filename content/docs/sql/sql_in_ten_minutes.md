@@ -831,6 +831,95 @@ mysql> select max(prod_price)
 1 row in set (0.00 sec)
 ```
 
+## 分组数据
+### 数据分组
+```sql
+mysql> select count(*) as num_prods from products
+    -> where vend_id = 'Dll01';
++-----------+
+| num_prods |
++-----------+
+|         4 |
++-----------+
+1 row in set (0.01 sec)
+```
+
+### 创建分组
+```sql
+mysql> select vend_id, count(*) as num_prods
+    -> from products
+    -> group by vend_id;
++---------+-----------+
+| vend_id | num_prods |
++---------+-----------+
+| BRS01   |         3 |
+| DLL01   |         4 |
+| FNG01   |         2 |
++---------+-----------+
+3 rows in set (0.01 sec)
+```
+
+### 过滤分组
+```sql
+mysql> select cust_id, count(*) as orders
+    -> from orders
+    -> group by cust_id
+    -> having count(*) >=2;
++------------+--------+
+| cust_id    | orders |
++------------+--------+
+| 1000000001 |      2 |
++------------+--------+
+1 row in set (0.00 sec)
+
+
+mysql> select vend_id, count(*) as num_prods
+           -> from products
+           -> where prod_price >= 4
+           -> group by vend_id
+           -> having count(*) >= 2;
++---------+-----------+
+| vend_id | num_prods |
++---------+-----------+
+| BRS01   |         3 |
+| FNG01   |         2 |
++---------+-----------+
+2 rows in set (0.00 sec)
+
+where 是进入group by前的过滤条件 having 是 group 之后的过滤条件
+```
+
+### 分组和排序
+```sql
+mysql> select order_num, count(*) as items
+    -> from orderItems
+    -> group by order_num
+    -> having count(*) >= 3;
++-----------+-------+
+| order_num | items |
++-----------+-------+
+|     20006 |     3 |
+|     20007 |     5 |
+|     20008 |     5 |
+|     20009 |     3 |
++-----------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select order_num, count(*) as items
+           -> from orderItems
+           -> group by order_num
+           -> having count(*) >= 3
+           -> order by items, order_num;
++-----------+-------+
+| order_num | items |
++-----------+-------+
+|     20006 |     3 |
+|     20009 |     3 |
+|     20007 |     5 |
+|     20008 |     5 |
++-----------+-------+
+4 rows in set (0.01 sec)
+```
 ## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
 * [10 Best UML Diagram Software Tools in 2024](https://clickup.com/blog/uml-diagram-software/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_____&gad_source=1&gclid=CjwKCAjwz42xBhB9EiwA48pT76ag9XqDHJmZQGdsLmJn_KnKQVz8ZXNdcj_sExTpyqzzu3A5aH2NdRoCKz4QAvD_BwE)
