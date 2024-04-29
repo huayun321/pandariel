@@ -920,6 +920,98 @@ mysql> select order_num, count(*) as items
 +-----------+-------+
 4 rows in set (0.01 sec)
 ```
+
+## 使用子查询
+### 子查询
+嵌套在其他查询中的查询
+### 利用子查询进行过滤
+```sql
+
+mysql> select order_num 
+    -> from orderItems
+    -> where prod_id = 'RGAN01';
++-----------+
+| order_num |
++-----------+
+|     20007 |
+|     20008 |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> select cust_id
+    -> from orders
+    -> where order_num in (20007, 20008);
++------------+
+| cust_id    |
++------------+
+| 1000000004 |
+| 1000000005 |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> select cust_id
+    -> from orders
+    -> where order_num in (select order_num
+    -> from orderItems
+    -> where prod_id = 'RGAN01');
++------------+
+| cust_id    |
++------------+
+| 1000000004 |
+| 1000000005 |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> select cust_name, cust_contact
+    -> from customers
+    -> where cust_id in (1000000004, 1000000005);
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select cust_name, cust_contact
+    -> from customers
+    -> where cust_id in (select cust_id from orders
+    -> where order_num in (select order_num
+    -> from orderItems
+    -> where prod_id = 'RGAN01'));
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.00 sec)
+```
+子查询只能是单列
+
+### 作为计算字段使用子查询
+```sql
+mysql> select cust_name,
+    -> cust_state,
+    -> (select count(*) from orders
+    -> where orders.cust_id = customers.cust_id) as orders
+    -> from customers
+    -> order by cust_name;
++---------------+------------+--------+
+| cust_name     | cust_state | orders |
++---------------+------------+--------+
+| Fun4All       | IN         |      1 |
+| Fun4All       | AZ         |      1 |
+| Kids Place    | OH         |      0 |
+| The Toy Store | IL         |      1 |
+| Village Toys  | MI         |      2 |
++---------------+------------+--------+
+5 rows in set (0.01 sec)
+```
+
+### 小结
+子查询常用于where 子句的 in 操作符中，以及用来填充计算列
+
 ## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
 * [10 Best UML Diagram Software Tools in 2024](https://clickup.com/blog/uml-diagram-software/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_____&gad_source=1&gclid=CjwKCAjwz42xBhB9EiwA48pT76ag9XqDHJmZQGdsLmJn_KnKQVz8ZXNdcj_sExTpyqzzu3A5aH2NdRoCKz4QAvD_BwE)
