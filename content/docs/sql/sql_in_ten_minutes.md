@@ -1008,9 +1008,105 @@ mysql> select cust_name,
 +---------------+------------+--------+
 5 rows in set (0.01 sec)
 ```
+    mysql> select cust_name, order_num from customers, orders where orders.cust_id = customers.cust_id;
+mysql> select cust_name, order_num from customers, orders where customers.cust_id = orders.cust_id;
 
 ### 小结
 子查询常用于where 子句的 in 操作符中，以及用来填充计算列
+
+## 联结表
+### 创建联结
+```sql
+mysql> select vend_name, prod_name, prod_price
+    -> from vendors, products
+    -> where vendors.vend_id = products.vend_id;
++-----------------+---------------------+------------+
+| vend_name       | prod_name           | prod_price |
++-----------------+---------------------+------------+
+| Doll House Inc. | Fish bean bag toy   |       3.49 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |
+| Bears R Us      | 8 inch teddy bear   |       5.99 |
+| Bears R Us      | 12 inch teddy bear  |       8.99 |
+| Bears R Us      | 18 inch teddy bear  |      11.99 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |
+| Fun and Games   | King doll           |       9.49 |
+| Fun and Games   | Queen doll          |       9.49 |
++-----------------+---------------------+------------+
+9 rows in set (0.00 sec)
+```
+
+#### 内联结
+```sql
+mysql> select vend_name, prod_name, prod_price
+    -> from vendors
+    -> inner join products on vendors.vend_id = products.vend_id;
++-----------------+---------------------+------------+
+| vend_name       | prod_name           | prod_price |
++-----------------+---------------------+------------+
+| Doll House Inc. | Fish bean bag toy   |       3.49 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |
+| Bears R Us      | 8 inch teddy bear   |       5.99 |
+| Bears R Us      | 12 inch teddy bear  |       8.99 |
+| Bears R Us      | 18 inch teddy bear  |      11.99 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |
+| Fun and Games   | King doll           |       9.49 |
+| Fun and Games   | Queen doll          |       9.49 |
++-----------------+---------------------+------------+
+9 rows in set (0.00 sec)
+```
+#### 联结多个表
+
+```sql
+mysql> select prod_name, vend_name, prod_price, quantity
+    -> from orderItems, products, vendors
+    -> where products.vend_id = vendors.vend_id
+    -> and orderItems.prod_id = products.prod_id
+    -> and order_num = 20007;
++---------------------+-----------------+------------+----------+
+| prod_name           | vend_name       | prod_price | quantity |
++---------------------+-----------------+------------+----------+
+| 18 inch teddy bear  | Bears R Us      |      11.99 |       50 |
+| Fish bean bag toy   | Doll House Inc. |       3.49 |      100 |
+| Bird bean bag toy   | Doll House Inc. |       3.49 |      100 |
+| Rabbit bean bag toy | Doll House Inc. |       3.49 |      100 |
+| Raggedy Ann         | Doll House Inc. |       4.99 |       50 |
++---------------------+-----------------+------------+----------+
+5 rows in set (0.00 sec)
+
+
+mysql> select cust_name, cust_contact
+    -> from customers
+    -> where cust_id in
+    -> (select cust_id
+    -> from orders where order_num in
+    -> (select order_num
+    -> from orderItems
+    -> where prod_id = 'RGAN01'));
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.00 sec)
+
+ysql> select cust_name, cust_contact
+    -> from customers, orders, orderItems
+    -> where customers.cust_id = orders.cust_id
+    -> and orderItems.order_num = orders.order_num
+    -> and prod_id = 'RGAN01';
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.01 sec)
+```
+
+
 
 ## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
