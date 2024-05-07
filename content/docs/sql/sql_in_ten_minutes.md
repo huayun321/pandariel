@@ -1106,6 +1106,136 @@ ysql> select cust_name, cust_contact
 2 rows in set (0.01 sec)
 ```
 
+## 创建高级联结
+### 使用表别名
+
+```sql
+mysql> select cust_name, cust_contact
+    -> rom customers as c, orders as o, orderItems as oi
+    -> where c.cust_id = o.cust_id
+    -> and oi.order_num = o.order_num
+    -> and prod_id = 'RGA01';
+```
+
+### 使用不同类型的联结
+#### 自联结
+```sql
+mysql> select cust_id, cust_name, cust_contact
+    -> from customers
+    -> where cust_name = (select cust_name 
+    -> from customers
+    -> where cust_contact = 'Jim Jones');
++------------+-----------+--------------------+
+| cust_id    | cust_name | cust_contact       |
++------------+-----------+--------------------+
+| 1000000003 | Fun4All   | Jim Jones          |
+| 1000000004 | Fun4All   | Denise L. Stephens |
++------------+-----------+--------------------+
+2 rows in set (0.01 sec)
+
+mysql> select c1.cust_id, c1.cust_name, c1.cust_contact
+    -> from customers as c1, customers as c2
+    -> where c1.cust_name = c2.cust_name
+    -> and c2.cust_contact='Jim Jones';
++------------+-----------+--------------------+
+| cust_id    | cust_name | cust_contact       |
++------------+-----------+--------------------+
+| 1000000003 | Fun4All   | Jim Jones          |
+| 1000000004 | Fun4All   | Denise L. Stephens |
++------------+-----------+--------------------+
+2 rows in set (0.00 sec)
+```
+
+### 自然联结
+```sql
+mysql> select c.*, o.order_num, o.order_date,
+    -> oi.prod_id, oi.quantity, oi.item_price
+    -> from customers as c, orders as o,
+    -> orderItems as oi
+    -> where c.cust_id = o.cust_id
+    -> and oi.order_num = o.order_num
+    -> and prod_id = 'RGAN01';
++------------+---------------+---------------------+-----------+------------+----------+--------------+--------------------+-----------------------+-----------+---------------------+---------+----------+------------+
+| cust_id    | cust_name     | cust_address        | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            | order_num | order_date          | prod_id | quantity | item_price |
++------------+---------------+---------------------+-----------+------------+----------+--------------+--------------------+-----------------------+-----------+---------------------+---------+----------+------------+
+| 1000000004 | Fun4All       | 829 Riverside Drive | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |     20007 | 2020-01-30 00:00:00 | RGAN01  |       50 |       4.49 |
+| 1000000005 | The Toy Store | 4545 53rd Street    | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |     20008 | 2020-02-03 00:00:00 | RGAN01  |        5 |       4.99 |
++------------+---------------+---------------------+-----------+------------+----------+--------------+--------------------+-----------------------+-----------+---------------------+---------+----------+------------+
+2 rows in set (0.00 sec)
+```
+
+### 外联结
+```sql
+mysql> select customers.cust_id, orders.order_num from customers inner join orders on customers.cust_id = orders.cust_id;
++------------+-----------+
+| cust_id    | order_num |
++------------+-----------+
+| 1000000001 |     20005 |
+| 1000000001 |     20009 |
+| 1000000003 |     20006 |
+| 1000000004 |     20007 |
+| 1000000005 |     20008 |
++------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select customers.cust_id, orders.order_num
+    -> from customers
+    -> left outer join orders on customers.cust_id = orders.cust_id;
++------------+-----------+
+| cust_id    | order_num |
++------------+-----------+
+| 1000000001 |     20005 |
+| 1000000001 |     20009 |
+| 1000000002 |      NULL |
+| 1000000003 |     20006 |
+| 1000000004 |     20007 |
+| 1000000005 |     20008 |
++------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select customers.cust_id, orders.order_num from customers right outer join orders on customers.cust_id = orders.cust_id;
++------------+-----------+
+| cust_id    | order_num |
++------------+-----------+
+| 1000000001 |     20005 |
+| 1000000001 |     20009 |
+| 1000000003 |     20006 |
+| 1000000004 |     20007 |
+| 1000000005 |     20008 |
++------------+-----------+
+5 rows in set (0.01 sec)
+```
+
+### 使用带聚集函数的联结
+```sql
+mysql> select customers.cust_id, count(orders.order_num) as num_ord
+    -> from customers
+    -> inner join orders on customers.cust_id = orders.cust_id
+    -> group by customers.cust_id;
++------------+---------+
+| cust_id    | num_ord |
++------------+---------+
+| 1000000001 |       2 |
+| 1000000003 |       1 |
+| 1000000004 |       1 |
+| 1000000005 |       1 |
++------------+---------+
+4 rows in set (0.01 sec)
+
+
+mysql> select customers.cust_id, count(orders.order_num) as num_ord from customers left outer join orders on customers.cust_id = orders.cust_id group by customers.cust_id;
++------------+---------+
+| cust_id    | num_ord |
++------------+---------+
+| 1000000001 |       2 |
+| 1000000002 |       0 |
+| 1000000003 |       1 |
+| 1000000004 |       1 |
+| 1000000005 |       1 |
++------------+---------+
+5 rows in set (0.00 sec)
+```
+
 
 
 ## 资源
