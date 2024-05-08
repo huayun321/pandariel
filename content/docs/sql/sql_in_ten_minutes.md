@@ -1236,6 +1236,7 @@ mysql> select customers.cust_id, count(orders.order_num) as num_ord from custome
 5 rows in set (0.00 sec)
 ```
 
+## 组合查询
 
 
 ## 资源
