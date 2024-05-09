@@ -1237,7 +1237,50 @@ mysql> select customers.cust_id, count(orders.order_num) as num_ord from custome
 ```
 
 ## 组合查询
+```sql
+mysql> select cust_name, cust_contact, cust_email
+    -> from customers
+    -> where cust_state in ('IL', 'IN', 'MI');
++---------------+--------------+-----------------------+
+| cust_name     | cust_contact | cust_email            |
++---------------+--------------+-----------------------+
+| Village Toys  | John Smith   | sales@villagetoys.com |
+| Fun4All       | Jim Jones    | jjones@fun4all.com    |
+| The Toy Store | Kim Howard   | NULL                  |
++---------------+--------------+-----------------------+
+3 rows in set (0.01 sec)
 
+
+mysql> select cust_name, cust_contact, cust_email
+    -> from customers
+    -> where cust_name = 'Fun4All';
++-----------+--------------------+-----------------------+
+| cust_name | cust_contact       | cust_email            |
++-----------+--------------------+-----------------------+
+| Fun4All   | Jim Jones          | jjones@fun4all.com    |
+| Fun4All   | Denise L. Stephens | dstephens@fun4all.com |
++-----------+--------------------+-----------------------+
+2 rows in set (0.00 sec)
+
+
+mysql> select cust_name, cust_contact, cust_email
+    -> from customers
+    -> where cust_state in ('IL', 'IN', 'MI')
+    -> union
+    -> select cust_name, cust_contact, cust_email
+    -> from customers
+    -> where cust_name = 'Fun4All';
++---------------+--------------------+-----------------------+
+| cust_name     | cust_contact       | cust_email            |
++---------------+--------------------+-----------------------+
+| Village Toys  | John Smith         | sales@villagetoys.com |
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| The Toy Store | Kim Howard         | NULL                  |
+| Fun4All       | Denise L. Stephens | dstephens@fun4all.com |
++---------------+--------------------+-----------------------+
+4 rows in set (0.01 sec)
+
+```
 
 ## 资源
 * [Sams Teach Yourself SQL in 10 Minutes](https://forta.com/books/0135182794/)
